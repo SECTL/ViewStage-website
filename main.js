@@ -341,5 +341,6 @@ initPenSizeSlider();
 
 const yearElement = document.getElementById('current-year');
 if (yearElement) {
-    yearElement.textContent = new Date().getFullYear();
+    const currentYear = new Date().getFullYear();
+    yearElement.textContent = currentYear === 2025 ? '2025' : `2025-${currentYear}`;
 }
