@@ -1,5 +1,7 @@
 console.log('ViewStage');
 
+document.addEventListener('contextmenu', (e) => e.preventDefault());
+
 const toggleBtn = document.querySelector('.vp-toggle-color-mode-button');
 
 function updateThemeIcon() {
