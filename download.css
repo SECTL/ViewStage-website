@@ -1,192 +1,807 @@
 .download-page {
-    min-height: calc(100vh - var(--navbar-height));
-    padding: calc(var(--navbar-height) + 96px) 5% 96px 5%;
-    max-width: 1200px;
-    margin: 0 auto;
+  min-height: calc(100vh - var(--navbar-height));
+  padding: calc(var(--navbar-height) + 64px) 5% 96px 5%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .download-header {
-    text-align: center;
-    margin-bottom: 48px;
+  text-align: center;
+  margin-bottom: 48px;
 }
 
 .download-title {
-    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    font-size: 48px;
-    font-weight: 600;
-    line-height: 1.1;
-    letter-spacing: -1.5px;
-    color: var(--text-primary);
-    margin-bottom: 16px;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  color: var(--text-primary);
+  margin-bottom: 8px;
 }
 
 .download-subtitle {
-    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1.5;
-    color: var(--text-secondary);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-muted);
 }
 
-.download-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    max-width: 1200px;
-    margin: 0 auto;
+.download-main-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto 56px;
+}
+
+.download-left-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.download-right-column {
+  display: flex;
+  flex-direction: column;
 }
 
 .download-card {
-    background: var(--bg-secondary);
-    border-radius: 12px;
-    padding: 32px;
-    transition: background-color var(--transition-normal);
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  padding: 28px;
+  transition: box-shadow 0.3s ease, background-color var(--transition-normal), transform 0.3s ease;
+}
+
+.download-card:hover {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  transform: translateY(-1px);
+}
+
+html.dark .download-card:hover {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
 }
 
 .card-title {
-    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 1.4;
-    color: var(--text-primary);
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-title svg {
+  width: 18px;
+  height: 18px;
+  color: var(--text-muted);
+  flex-shrink: 0;
 }
 
 .version-info {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .info-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px 0;
-    border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .info-row:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 .info-label {
-    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.5;
-    color: var(--text-muted);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-muted);
 }
 
 .info-value {
-    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.5;
-    color: var(--text-primary);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--text-primary);
+  text-align: right;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
-.system-requirements {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+.platform-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 9px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--bg-tertiary);
+  border-radius: 5px;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
 }
 
-.requirement-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.5;
-    color: var(--text-secondary);
+.text-muted {
+  color: var(--text-muted);
 }
 
-.requirement-icon {
-    flex-shrink: 0;
-    width: 16px;
-    height: 16px;
-    color: var(--text-muted);
-    margin-top: 2px;
+.options-placeholder {
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.download-button-wrapper {
-    grid-column: 1 / -1;
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-    margin-top: 48px;
-    flex-wrap: wrap;
+.options-loading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.loading-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--border-color);
+  border-top-color: var(--text-muted);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.download-options {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.option-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option-label {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.option-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.option-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+  position: relative;
+}
+
+.option-btn:hover {
+  border-color: var(--text-muted);
+  color: var(--text-primary);
+  background: var(--hover-bg);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.option-btn:active {
+  transform: translateY(0);
+}
+
+.option-btn.active {
+  color: var(--on-primary);
+  background: var(--primary);
+  border-color: var(--primary);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+html.dark .option-btn.active {
+  color: var(--on-primary);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+.option-btn.active:hover {
+  background: var(--primary-active);
+  border-color: var(--primary-active);
+}
+
+.option-btn svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.option-btn.active svg {
+  filter: brightness(10);
+}
+
+html.dark .option-btn.active svg {
+  filter: brightness(0);
+}
+
+.platform-btn {
+  min-width: 90px;
+  justify-content: center;
+}
+
+.platform-icon {
+  display: flex;
+  align-items: center;
+}
+
+.arch-btn {
+  min-width: 56px;
+  justify-content: center;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.format-btn {
+  min-width: 100px;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2px;
+  padding: 11px 16px;
+}
+
+.format-ext {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.format-label {
+  font-size: 11px;
+  font-weight: 400;
+  opacity: 0.65;
+  line-height: 1.2;
+}
+
+.option-btn.active .format-label {
+  opacity: 0.85;
+}
+
+.mirror-group {
+  margin-top: 4px;
+}
+
+.mirror-btn {
+  min-width: 90px;
+  justify-content: center;
+}
+
+.mirror-btn svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.download-action {
+  margin-top: 12px;
 }
 
 .download-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    height: 40px;
-    padding: 12px 20px;
-    background: var(--primary);
-    color: var(--on-primary);
-    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 52px;
+  padding: 12px 24px;
+  background: var(--primary);
+  color: var(--on-primary);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s ease;
 }
 
 .download-button:hover {
-    background: var(--primary-active);
+  background: var(--primary-active);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
-.download-button.secondary {
-    background: var(--bg-primary);
-    color: var(--text-primary);
-    border: 1px solid var(--border-color);
-}
-
-.download-button.secondary:hover {
-    background: var(--hover-bg);
+.download-button:active {
+  transform: translateY(0);
+  box-shadow: none;
 }
 
 .download-button svg {
-    width: 16px;
-    height: 16px;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.file-size-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  line-height: 1.4;
+}
+
+html.dark .file-size-badge {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.download-meta {
+  margin-top: 10px;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+  word-break: break-all;
+}
+
+.download-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 24px 0;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.download-error svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.download-actions-secondary {
+  display: flex;
+  gap: 10px;
+}
+
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 1;
+  height: 42px;
+  padding: 10px 16px;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.action-btn:hover {
+  border-color: var(--text-muted);
+  color: var(--text-primary);
+  background: var(--hover-bg);
+  transform: translateY(-1px);
+}
+
+.action-btn:active {
+  transform: translateY(0);
+}
+
+.action-btn svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.changelog-content {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  max-height: 480px;
+  overflow-y: auto;
+}
+
+.changelog-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.changelog-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.changelog-content::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 2px;
+}
+
+.changelog-loading {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.changelog-empty {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.changelog-heading {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 24px 0 12px;
+  line-height: 1.4;
+}
+
+.changelog-heading:first-child {
+  margin-top: 0;
+}
+
+.changelog-list {
+  margin: 8px 0;
+  padding-left: 20px;
+}
+
+.changelog-list li {
+  margin-bottom: 5px;
+  line-height: 1.65;
+}
+
+.changelog-paragraph {
+  margin: 12px 0;
+}
+
+.changelog-paragraph:first-child {
+  margin-top: 0;
+}
+
+.changelog-content code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 13px;
+  padding: 2px 6px;
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+  color: var(--text-primary);
+}
+
+.changelog-content a {
+  color: var(--brand-accent);
+  text-decoration: none;
+}
+
+.changelog-content a:hover {
+  text-decoration: underline;
+}
+
+.version-list-section {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.version-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-title svg {
+  width: 20px;
+  height: 20px;
+  color: var(--text-muted);
+}
+
+.version-list-count {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.version-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.version-list-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 40px 0;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.version-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  transition: background-color 0.2s ease, transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s ease;
+  gap: 16px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.version-list-item:hover {
+  background: var(--bg-tertiary);
+  transform: translateX(4px);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.version-list-item:active {
+  transform: translateX(2px);
+}
+
+.version-list-item.current {
+  border: 1px solid var(--primary);
+  background: var(--bg-secondary);
+}
+
+.version-list-item.current:hover {
+  background: var(--bg-tertiary);
+}
+
+.version-list-item-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.version-list-tag {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.version-list-item.current .version-list-tag {
+  color: var(--primary);
+}
+
+.version-list-date {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.version-list-item-center {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  flex: 1;
+  justify-content: center;
+}
+
+.version-list-item-right {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.version-list-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--primary);
+  background: var(--bg-primary);
+  border: 1px solid var(--primary);
+  border-radius: 6px;
+  letter-spacing: 0.02em;
+}
+
+.version-list-expand,
+.version-list-collapse {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 20px;
+  margin-top: 4px;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  user-select: none;
+  border-radius: 12px;
+  border: 1px dashed var(--border-color);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.version-list-expand:hover,
+.version-list-collapse:hover {
+  color: var(--text-primary);
+  border-color: var(--text-muted);
+  background: var(--bg-secondary);
+  transform: translateY(-1px);
+}
+
+.version-list-expand:active,
+.version-list-collapse:active {
+  transform: translateY(0);
+}
+
+.version-list-expand svg,
+.version-list-collapse svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.2s ease;
+}
+
+.version-list-expand:hover svg {
+  transform: translateY(2px);
+}
+
+.version-list-collapse:hover svg {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+  .download-main-content {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 768px) {
-    .download-page {
-        padding: calc(var(--navbar-height) + 48px) 5% 48px 5%;
-    }
+  .download-page {
+    padding: calc(var(--navbar-height) + 32px) 5% 48px 5%;
+  }
 
-    .download-title {
-        font-size: 36px;
-        letter-spacing: -1px;
-    }
+  .download-title {
+    font-size: 32px;
+    letter-spacing: -1px;
+  }
 
-    .download-container {
-        grid-template-columns: 1fr;
-        gap: 16px;
-    }
+  .download-header {
+    margin-bottom: 32px;
+  }
 
-    .download-card {
-        padding: 24px;
-    }
+  .download-main-content {
+    gap: 16px;
+    margin-bottom: 32px;
+  }
 
-    .download-button-wrapper {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 12px;
-    }
+  .download-card {
+    padding: 20px;
+    border-radius: 12px;
+  }
 
-    .download-button {
-        width: 100%;
-    }
+  .download-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .card-title {
+    font-size: 15px;
+    margin-bottom: 16px;
+  }
+
+  .option-buttons {
+    gap: 6px;
+  }
+
+  .platform-btn {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .option-btn:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .format-btn {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .download-actions-secondary {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .action-btn:hover {
+    transform: none;
+  }
+
+  .version-list-item {
+    flex-wrap: wrap;
+    padding: 12px 16px;
+  }
+
+  .version-list-item:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .version-list-item-center {
+    width: 100%;
+    justify-content: flex-start;
+    order: 3;
+  }
+
+  .version-list-item-right {
+    margin-left: auto;
+  }
+
+  .changelog-content {
+    max-height: 300px;
+  }
+
+  .version-list-expand:hover,
+  .version-list-collapse:hover {
+    transform: none;
+  }
 }

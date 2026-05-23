@@ -251,95 +251,49 @@ function initColorPicker() {
     updateColorPickerUI();
 }
 
-function initTriangleSliderDemo(wrapper, thumb, valueLabel, minValue, maxValue, initialValue) {
-    const wrapperHeight = 50;
-    const thumbHeight = 18;
-    const validHeight = wrapperHeight - thumbHeight;
+function init_pen_size_presets_demo() {
+    const presets = document.querySelectorAll('.size-preset-btn-demo');
+    const label = document.getElementById('penSizeValueDemo');
+    if (!presets.length || !label) return;
     
-    let currentValue = initialValue;
-    let isDragging = false;
-    
-    function updateThumbPosition() {
-        const ratio = (currentValue - minValue) / (maxValue - minValue);
-        const top = (1 - ratio) * validHeight;
-        thumb.style.top = `${top}px`;
-        valueLabel.textContent = `${currentValue}px`;
-    }
-    
-    function getPositionFromEvent(e) {
-        if (e.touches && e.touches.length > 0) {
-            return e.touches[0].clientY;
-        }
-        return e.clientY;
-    }
-    
-    function onDrag(e) {
-        if (!isDragging) return;
-        e.preventDefault();
-        const clientY = getPositionFromEvent(e);
-        const mouseY = clientY - wrapper.getBoundingClientRect().top;
-        const clampedY = Math.max(0, Math.min(mouseY, validHeight));
-        const ratio = 1 - (clampedY / validHeight);
-        currentValue = Math.round(minValue + ratio * (maxValue - minValue));
-        updateThumbPosition();
-    }
-    
-    function stopDrag() {
-        isDragging = false;
-        document.removeEventListener('mousemove', onDrag);
-        document.removeEventListener('mouseup', stopDrag);
-        document.removeEventListener('touchmove', onDrag);
-        document.removeEventListener('touchend', stopDrag);
-        document.removeEventListener('touchcancel', stopDrag);
-    }
-    
-    function startDrag(e) {
-        e.preventDefault();
-        isDragging = true;
-        document.addEventListener('mousemove', onDrag);
-        document.addEventListener('mouseup', stopDrag);
-        document.addEventListener('touchmove', onDrag, { passive: false });
-        document.addEventListener('touchend', stopDrag);
-        document.addEventListener('touchcancel', stopDrag);
-    }
-    
-    thumb.addEventListener('mousedown', startDrag);
-    thumb.addEventListener('touchstart', startDrag, { passive: false });
-    
-    wrapper.addEventListener('click', (e) => {
-        if (isDragging) return;
-        const clickY = e.clientY - wrapper.getBoundingClientRect().top;
-        const ratio = 1 - Math.max(0, Math.min(clickY / validHeight, 1));
-        currentValue = Math.round(minValue + ratio * (maxValue - minValue));
-        updateThumbPosition();
+    presets.forEach(btn => {
+        btn.addEventListener('click', () => {
+            presets.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            label.textContent = btn.dataset.value + 'px';
+        });
     });
-    
-    wrapper.addEventListener('touchstart', (e) => {
-        if (e.target === thumb) return;
-        const touch = e.touches[0];
-        const clickY = touch.clientY - wrapper.getBoundingClientRect().top;
-        const ratio = 1 - Math.max(0, Math.min(clickY / validHeight, 1));
-        currentValue = Math.round(minValue + ratio * (maxValue - minValue));
-        updateThumbPosition();
-    }, { passive: true });
-    
-    updateThumbPosition();
 }
 
-function initPenSizeSlider() {
-    const sliderWrapper = document.querySelector('.slider-wrapper-demo');
-    const thumb = document.querySelector('.custom-thumb-demo');
-    const label = document.querySelector('.pen-size-label-demo');
-    
-    if (!sliderWrapper || !thumb || !label) return;
-    
-    initTriangleSliderDemo(sliderWrapper, thumb, label, 2, 21, 5);
+function fetch_latest_release() {
+    const badge = document.getElementById('hero-version-badge');
+    const numberEl = document.getElementById('hero-version-number');
+    const dateEl = document.getElementById('hero-publish-date');
+    if (!badge || !numberEl || !dateEl) return;
+
+    fetch('https://api.github.com/repos/SECTL/ViewStage/releases')
+        .then(res => res.json())
+        .then(data => {
+            if (!Array.isArray(data) || data.length === 0) return;
+            const latest = data[0];
+            const tag = latest.tag_name || '';
+            const date = latest.published_at ? latest.published_at.slice(0, 10) : '';
+            if (tag) {
+                numberEl.textContent = tag.startsWith('v') ? tag : 'v' + tag;
+                badge.textContent = tag;
+            }
+            if (date) {
+                dateEl.textContent = date;
+            }
+        })
+        .catch(() => {});
 }
 
 initTheme();
+fetch_latest_release();
 initScrollAnimations();
 initColorPicker();
-initPenSizeSlider();
+init_pen_size_presets_demo();
 
 const yearElement = document.getElementById('current-year');
 if (yearElement) {

@@ -404,6 +404,29 @@ body {
     gap: 16px;
     justify-content: center;
     flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.hero-version-hint {
+    font-size: 14px;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+.version-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    font-size: 11px;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+}
+
+html.dark .version-badge {
+    background: rgba(0, 0, 0, 0.2);
 }
 
 .btn {
@@ -431,6 +454,16 @@ body {
 .btn-primary:hover {
     background: var(--primary-active);
     transform: scale(1.02);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+    box-shadow: none;
+}
+
+html.dark .btn-primary:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
 }
 
 .btn-secondary {
@@ -442,6 +475,10 @@ body {
 .btn-secondary:hover {
     background: var(--hover-bg);
     border-color: var(--text-muted);
+}
+
+.btn-secondary:active {
+    transform: scale(0.98);
 }
 
 .features-section {
@@ -475,13 +512,21 @@ body {
     padding: 32px;
     border-radius: var(--radius-lg);
     border: 1px solid var(--border-color-light);
-    transition: all var(--transition-normal);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
 }
 
 .feature-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
     border-color: var(--border-color);
+}
+
+.feature-card:active {
+    transform: translateY(0);
+}
+
+html.dark .feature-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 }
 
 .feature-icon {
@@ -560,7 +605,16 @@ body {
     padding: 20px;
     box-shadow: var(--picker-shadow);
     border: 1px solid var(--picker-border);
-    transition: background var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+    transition: background var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal), transform var(--transition-normal);
+}
+
+.color-picker-popup-demo:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.14);
+    transform: translateY(-1px);
+}
+
+html.dark .color-picker-popup-demo:hover {
+    box-shadow: 0 12px 44px rgba(0, 0, 0, 0.35);
 }
 
 .color-picker-sv-demo {
@@ -775,6 +829,16 @@ body {
     border-radius: var(--radius-xl);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     border: 1px solid var(--hairline);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.docs-preview-img:hover {
+    transform: scale(1.01);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+html.dark .docs-preview-img:hover {
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
 }
 
 .docs-preview-img.light-img {
@@ -806,70 +870,86 @@ html.dark .docs-preview-img.dark-img {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 8px;
-    padding: 16px 20px;
+    gap: 4px;
+    padding: 12px 16px;
     background: var(--pen-panel-bg);
-    border-radius: var(--radius-xl);
+    border-radius: var(--radius-lg);
     border: 1px solid var(--pen-panel-border);
     box-shadow: var(--pen-panel-shadow);
-    transition: background var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal);
+    transition: background var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal), transform var(--transition-normal);
 }
 
-.slider-wrapper-demo {
-    position: relative;
-    width: 40px;
-    height: 50px;
-    cursor: ns-resize;
+.pen-control-panel-demo:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
 }
 
-.triangle-track-demo {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
+html.dark .pen-control-panel-demo:hover {
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
 }
 
-.custom-thumb-demo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: var(--pen-thumb-bg);
-    border: 3px solid var(--pen-panel-bg);
-    box-shadow: var(--pen-thumb-shadow);
-    z-index: 2;
-}
-
-.pen-size-vertical-demo {
+.pen-size-presets-demo {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: 10px;
-    min-width: 40px;
-    padding: 0 4px;
+    gap: 6px;
+    padding: 0 2px;
+}
+
+.size-preset-btn-demo {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--hairline);
+    background: var(--bg-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+    padding: 0;
+}
+
+.size-preset-btn-demo:hover {
+    border-color: var(--text-primary);
+    transform: scale(1.1);
+}
+
+.size-preset-btn-demo.active {
+    border-color: var(--text-primary);
+    background: var(--bg-secondary);
+}
+
+.size-dot-demo {
+    display: block;
+    border-radius: 50%;
+    background: var(--text-muted);
+    flex-shrink: 0;
+    transition: all 0.15s ease;
+}
+
+.size-preset-btn-demo:hover .size-dot-demo {
+    background: var(--text-primary);
 }
 
 .pen-size-label-demo {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
-    color: var(--pen-label-color);
+    color: var(--text-muted);
+    margin-left: 4px;
 }
 
 .pen-color-buttons-demo {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    gap: 8px;
+    gap: 6px;
     justify-items: center;
 }
 
 .pen-color-btn-demo {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     border: 2px solid transparent;
     cursor: pointer;
@@ -881,6 +961,11 @@ html.dark .docs-preview-img.dark-img {
 .pen-color-btn-demo:hover {
     transform: scale(1.15);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.pen-color-btn-demo.active {
+    border: 2px solid var(--text-primary);
+    box-shadow: 0 0 0 2px var(--pen-panel-bg);
 }
 
 .pen-color-btn-demo.dark-color-demo {
@@ -1008,6 +1093,11 @@ html.dark .docs-preview-img.dark-img {
         border-radius: 20px;
     }
     
+    .hero-logo:hover {
+        transform: none;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    }
+    
     .hero-title {
         font-size: 36px;
     }
@@ -1027,6 +1117,15 @@ html.dark .docs-preview-img.dark-img {
         font-size: 14px;
     }
     
+    .btn-primary:hover {
+        transform: none;
+        box-shadow: none;
+    }
+    
+    .btn-secondary:active {
+        transform: none;
+    }
+    
     .features-section {
         padding: 64px 16px;
     }
@@ -1043,6 +1142,12 @@ html.dark .docs-preview-img.dark-img {
     
     .feature-card {
         padding: 24px;
+    }
+    
+    .feature-card:hover {
+        transform: none;
+        box-shadow: none;
+        border-color: var(--border-color-light);
     }
     
     .showcase-section {
@@ -1079,12 +1184,27 @@ html.dark .docs-preview-img.dark-img {
         max-width: 320px;
     }
     
+    .docs-preview-img:hover {
+        transform: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    
     .pen-section {
         padding: 64px 16px;
     }
     
     .pen-control-panel-demo {
         padding: 12px 16px;
+    }
+    
+    .pen-control-panel-demo:hover {
+        transform: none;
+        box-shadow: var(--pen-panel-shadow);
+    }
+    
+    .color-picker-popup-demo:hover {
+        transform: none;
+        box-shadow: var(--picker-shadow);
     }
     
     .pen-color-btn-demo {
@@ -1094,6 +1214,15 @@ html.dark .docs-preview-img.dark-img {
     
     .pen-color-buttons-demo {
         gap: 6px;
+    }
+    
+    .size-preset-btn-demo {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .pen-control-panel-demo {
+        padding: 10px 12px;
     }
     
     .color-picker-popup-demo {
