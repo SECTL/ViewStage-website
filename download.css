@@ -399,6 +399,98 @@ html.dark .file-size-badge {
   flex-shrink: 0;
 }
 
+.theme-card {
+  border: 1px solid var(--border-color);
+}
+
+.extension-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.extension-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: var(--bg-primary);
+  border-radius: 10px;
+  border: 1px solid var(--border-color-light);
+  transition: border-color 0.2s ease;
+}
+
+.extension-item:hover {
+  border-color: var(--border-color);
+}
+
+.extension-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.extension-name {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.extension-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.1);
+  border-radius: 4px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+html.dark .extension-badge {
+  background: rgba(251, 191, 36, 0.15);
+  color: #fbbf24;
+}
+
+.extension-desc {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.extension-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: var(--primary);
+  color: var(--on-primary);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+
+.extension-btn:hover {
+  background: var(--primary-active);
+  transform: translateY(-1px);
+}
+
+.extension-btn:active {
+  transform: translateY(0);
+}
+
+.extension-btn svg {
+  flex-shrink: 0;
+}
+
 .download-actions-secondary {
   display: flex;
   gap: 10px;
@@ -774,6 +866,11 @@ html.dark .file-size-badge {
 
   .action-btn:hover {
     transform: none;
+  }
+
+  .theme-download-btn:hover {
+    transform: none;
+    box-shadow: none;
   }
 
   .version-list-item {

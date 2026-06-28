@@ -2,8 +2,8 @@ const GITHUB_REPO = 'SECTL/ViewStage';
 const API_URL_RELEASES = `https://api.github.com/repos/${GITHUB_REPO}/releases`;
 const PER_PAGE = 30;
 const MIRROR_SOURCES = [
-  { id: 'direct', label: '直接下载', url: null },
-  { id: 'sectl', label: 'SECTL 镜像', url: 'https://ghproxy.sectl.cn/' },
+  { id: 'sectl', label: 'SECTL 镜像', url: 'https://appwrite.sectl.cn/api/software/download?projectSlug=ViewStage&source=server&fileName=' },
+  { id: 'direct', label: 'GitHub', url: null },
   { id: 'ghproxy', label: 'gh-proxy', url: 'https://gh-proxy.com/' },
 ];
 
@@ -36,7 +36,7 @@ const state = {
   current_arch: '',
   current_format: '',
   use_compat: false,
-  mirror_source: 'direct',
+  mirror_source: 'sectl',
   current_asset: null,
   is_loading: true,
   is_version_list_expanded: false,
@@ -479,7 +479,12 @@ function render_download_action() {
 
   const mirror_config = MIRROR_SOURCES.find(m => m.id === state.mirror_source);
   const use_mirror = mirror_config && mirror_config.url;
-  const download_url = use_mirror ? mirror_config.url + asset.url : asset.url;
+  let download_url;
+  if (state.mirror_source === 'sectl') {
+    download_url = mirror_config.url + encodeURIComponent(asset.name);
+  } else {
+    download_url = use_mirror ? mirror_config.url + asset.url : asset.url;
+  }
   if (btn) btn.href = download_url;
   if (text_el) {
     const display = FORMAT_DISPLAY[asset.format];

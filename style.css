@@ -541,6 +541,12 @@ html.dark .feature-card:hover {
     color: var(--text-primary);
 }
 
+.feature-icon img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
 .feature-title {
     font-size: 18px;
     font-weight: 600;
@@ -855,6 +861,19 @@ html.dark .docs-preview-img.light-img {
 
 html.dark .docs-preview-img.dark-img {
     display: block;
+}
+
+.phone-section,
+.light-section,
+.blackboard-section {
+    padding: 96px 24px;
+    background: var(--canvas);
+}
+
+.phone-section .section-container,
+.light-section .section-container,
+.blackboard-section .section-container {
+    max-width: 900px;
 }
 
 .pen-section {
@@ -1187,6 +1206,12 @@ html.dark .pen-control-panel-demo:hover {
     .docs-preview-img:hover {
         transform: none;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    
+    .phone-section,
+    .light-section,
+    .blackboard-section {
+        padding: 64px 16px;
     }
     
     .pen-section {
